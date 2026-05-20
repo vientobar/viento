@@ -1,1 +1,239 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="background:red;color:white;font-size:40px;padding:40px">VIENTO WORKS</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viento Bar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--beige:#f0e8d5;--beige-dark:#ddd0b3;--sage:#7d9e8c;--sage-light:#a8c0b0;--terra:#c4613a;--terra-dark:#a84e2c;--cream:#faf6ee;--brown:#3d2b1f;--brown-mid:#6b4c38}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--brown);font-family:'Josefin Sans',sans-serif;font-weight:300;overflow-x:hidden}
+.hero{position:relative;height:100svh;min-height:580px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;background:linear-gradient(160deg,#4e7d8c 0%,#2d5e6e 35%,#7d9e8c 65%,#c4613a 100%)}
+.hero-wave{position:absolute;bottom:-1px;left:0;right:0;z-index:2}
+.hero-top{position:relative;z-index:3;padding:32px 28px 0}
+.hero-content{position:relative;z-index:3;padding:0 28px 56px}
+.badge-link{display:inline-flex;align-items:center;gap:9px;text-decoration:none;background:rgba(15,8,3,0.55);border:1px solid rgba(240,232,213,0.5);backdrop-filter:blur(8px);border-radius:2px;padding:9px 16px}
+.badge{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--beige)}
+h1{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(78px,22vw,130px);line-height:0.88;color:var(--beige);letter-spacing:-0.01em;text-shadow:0 2px 40px rgba(0,0,0,0.4);margin-bottom:12px}
+h1 em{font-style:italic;font-weight:400;color:var(--beige-dark);font-size:0.45em;display:block;letter-spacing:0.08em;margin-bottom:4px}
+.hero-sub{font-family:'Lora',serif;font-style:italic;font-size:clamp(14px,3.5vw,18px);color:rgba(240,232,216,0.82);margin-bottom:34px;line-height:1.6;max-width:290px;text-shadow:0 1px 12px rgba(0,0,0,0.4)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;font-family:'Josefin Sans',sans-serif;font-size:11px;font-weight:300;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;border:none;border-radius:2px;transition:transform 0.18s,background 0.2s}
+.btn:active{transform:scale(0.97)}
+.btn-terra{background:var(--terra);color:var(--cream);box-shadow:0 4px 20px rgba(196,97,58,0.38)}
+.btn-ghost{background:transparent;color:var(--beige);border:1px solid rgba(240,232,213,0.45)}
+.story{padding:64px 28px 60px;max-width:480px;margin:0 auto;border-bottom:1px solid rgba(125,158,140,0.2)}
+.section-eye{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:var(--sage);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.section-eye::after{content:'';flex:1;height:1px;background:var(--sage-light);opacity:0.4}
+.story h2{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(26px,6vw,36px);line-height:1.25;color:var(--brown);margin-bottom:22px}
+.story h2 em{color:var(--terra);font-style:italic}
+.story p{font-family:'Lora',serif;font-size:15px;line-height:1.9;color:var(--brown-mid);margin-bottom:16px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px;padding-top:26px;border-top:1px solid rgba(125,158,140,0.2)}
+.pill{background:rgba(125,158,140,0.1);border:1px solid rgba(125,158,140,0.3);border-radius:100px;padding:6px 14px;font-size:10px;letter-spacing:0.14em;color:var(--sage)}
+.menu-sec{background:var(--sage);padding:56px 28px 60px;text-align:center}
+.menu-sec .section-eye{color:rgba(250,246,238,0.6);justify-content:center}
+.menu-sec .section-eye::after{display:none}
+.menu-sec h2{font-family:'Playfair Display',serif;font-size:clamp(38px,10vw,60px);font-weight:700;color:var(--cream);margin-bottom:8px;line-height:1}
+.menu-sec > p{font-family:'Lora',serif;font-style:italic;color:rgba(250,246,238,0.75);font-size:16px;margin-bottom:36px}
+.menu-coming{background:rgba(250,246,238,0.1);border:1px solid rgba(250,246,238,0.2);border-radius:4px;padding:32px;color:rgba(250,246,238,0.7);font-family:'Lora',serif;font-style:italic;font-size:15px}
+footer{background:var(--brown);color:rgba(240,232,213,0.55);padding:40px 28px 36px;text-align:center;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;line-height:2}
+.footer-logo{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--beige);letter-spacing:0.05em;margin-bottom:14px}
+footer a{color:var(--terra);text-decoration:none}
+.overlay{position:fixed;inset:0;background:rgba(30,20,12,0.88);backdrop-filter:blur(8px);z-index:500;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.25s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--cream);border-radius:4px;padding:44px 32px 36px;max-width:320px;width:100%;text-align:center;transform:translateY(24px) scale(0.97);transition:transform 0.28s;border-top:4px solid var(--terra)}
+.overlay.open .modal{transform:translateY(0) scale(1)}
+.modal-logo{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.2em;color:var(--sage);margin-bottom:4px}
+.modal h3{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:var(--terra);line-height:1;margin-bottom:4px}
+.modal .sub{font-family:'Lora',serif;font-style:italic;font-size:15px;color:var(--brown-mid);margin-bottom:20px}
+.modal-instruction{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage);margin-bottom:12px}
+.code-big{background:rgba(196,97,58,0.08);border:1.5px dashed var(--terra);border-radius:3px;padding:14px 20px;font-family:'Playfair Display',serif;font-size:32px;letter-spacing:0.14em;color:var(--brown);margin-bottom:8px;cursor:pointer;user-select:all}
+.copy-hint{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(61,43,31,0.35);margin-bottom:20px}
+.valid-note{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(61,43,31,0.35);margin-bottom:20px;padding:10px 16px;border:1px solid rgba(125,158,140,0.2);border-radius:2px;line-height:1.8}
+.modal-close{background:none;border:none;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);cursor:pointer}
+.location-tag{display:inline-block;background:rgba(125,158,140,0.12);border:1px solid rgba(125,158,140,0.35);border-radius:100px;padding:5px 14px;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--sage);margin-bottom:18px}
+.location-tag:empty{display:none}
+#adminPanel{display:none;position:fixed;inset:0;background:#1a1209;z-index:900;overflow-y:auto;font-family:'Josefin Sans',sans-serif}
+#adminPanel.visible{display:block}
+.admin-header{background:var(--brown);padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;border-bottom:2px solid var(--terra)}
+.admin-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--beige)}
+.admin-title span{font-size:11px;letter-spacing:0.18em;color:var(--terra);display:block;text-transform:uppercase}
+.admin-logout{background:none;border:1px solid rgba(240,232,213,0.2);color:rgba(240,232,213,0.5);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;padding:7px 14px;border-radius:2px;cursor:pointer}
+.admin-body{padding:24px 20px;max-width:480px;margin:0 auto}
+.admin-section{background:rgba(255,255,255,0.04);border:1px solid rgba(240,232,213,0.08);border-radius:6px;padding:20px;margin-bottom:20px}
+.admin-section-title{font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:var(--sage);margin-bottom:16px}
+.verify-row{display:flex;gap:10px;margin-bottom:12px}
+.code-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(240,232,213,0.15);border-radius:3px;padding:12px 14px;font-family:'Playfair Display',serif;font-size:18px;letter-spacing:0.12em;color:var(--beige);text-transform:uppercase;outline:none}
+.code-input::placeholder{font-size:13px;color:rgba(240,232,213,0.2);font-family:'Josefin Sans',sans-serif}
+.btn-verify{background:var(--sage);color:var(--cream);border:none;border-radius:3px;padding:12px 18px;cursor:pointer;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap}
+.btn-scan{width:100%;background:rgba(125,158,140,0.12);border:1px dashed rgba(125,158,140,0.4);color:var(--sage);border-radius:3px;padding:12px;cursor:pointer;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;margin-top:8px}
+.verify-result{border-radius:4px;padding:14px 16px;margin-top:12px;display:none}
+.verify-result.valid{background:rgba(80,160,100,0.15);border:1px solid rgba(80,160,100,0.4)}
+.verify-result.invalid{background:rgba(196,97,58,0.15);border:1px solid rgba(196,97,58,0.4)}
+.verify-result.used{background:rgba(200,160,60,0.15);border:1px solid rgba(200,160,60,0.4)}
+.result-icon{font-size:22px;margin-bottom:6px}
+.result-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--beige);margin-bottom:4px}
+.result-detail{font-size:11px;color:rgba(240,232,213,0.55);line-height:1.7;text-transform:uppercase;white-space:pre-line}
+.btn-mark-used{margin-top:12px;width:100%;background:var(--terra);color:#fff;border:none;border-radius:3px;padding:11px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.stat-box{background:rgba(255,255,255,0.04);border:1px solid rgba(240,232,213,0.07);border-radius:4px;padding:14px 12px;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:28px;color:var(--beige);line-height:1;margin-bottom:4px}
+.stat-label{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,232,213,0.4)}
+.log-list{list-style:none}
+.log-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(240,232,213,0.06);font-size:12px}
+.log-item:last-child{border-bottom:none}
+.log-code{font-family:'Playfair Display',serif;font-size:14px;color:var(--beige);letter-spacing:0.08em;flex-shrink:0;min-width:90px}
+.log-meta{flex:1;color:rgba(240,232,213,0.4);line-height:1.5}
+.log-status{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;flex-shrink:0;padding:3px 8px;border-radius:2px}
+.log-status.redeemed{background:rgba(196,97,58,0.2);color:var(--terra)}
+.log-status.claimed{background:rgba(125,158,140,0.2);color:var(--sage)}
+#scannerOverlay{display:none;position:fixed;inset:0;background:#000;z-index:1000;flex-direction:column;align-items:center;justify-content:center}
+#scannerOverlay.active{display:flex}
+#scannerVideo{width:100%;max-width:400px;border-radius:8px}
+.scanner-hint{color:rgba(255,255,255,0.6);font-size:12px;margin-top:16px;text-align:center}
+.btn-cancel-scan{margin-top:20px;background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.6);padding:10px 24px;border-radius:3px;cursor:pointer;font-size:11px;letter-spacing:0.14em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<section class="hero">
+  <svg class="hero-wave" viewBox="0 0 375 48" fill="none" preserveAspectRatio="none"><path d="M0 24 Q60 6 120 28 Q180 48 240 24 Q300 4 375 28 L375 48 L0 48 Z" fill="#faf6ee"/></svg>
+  <div class="hero-top">
+    <a class="badge-link" href="https://maps.app.goo.gl/BM6Hg2Umyy2XwaS56" target="_blank">
+      <span>&#128205;</span><span class="badge">Ku&#269;i&#353;te &middot; Pelje&#353;ac &middot; Croatia</span><span style="font-size:12px;color:var(--terra)">&#8599;</span>
+    </a>
+  </div>
+  <div class="hero-content">
+    <h1><em>cocktails &amp; brunch</em>VIENTO</h1>
+    <p class="hero-sub">Slow down. Sip something beautiful. Stay a little longer.</p>
+    <div class="cta-row">
+      <button class="btn btn-terra" onclick="openModal()">Claim 10% Off</button>
+      <button class="btn btn-ghost" onclick="scrollToMenu()">View Menu</button>
+    </div>
+  </div>
+</section>
+<section class="story">
+  <p class="section-eye">Our Story</p>
+  <h2>A place to slow down<br>&amp; <em>taste with intention.</em></h2>
+  <p>Viento is not in a rush &mdash; and neither should you be. Nestled among olive trees on the Pelje&#353;ac coast with Kor&#269;ula shimmering across the channel, it&rsquo;s a place built for lingering. For that second coffee. For a brunch that turns into an afternoon.</p>
+  <p>Everything here is made with care. Our signature cocktails are crafted from scratch &mdash; homemade syrups, fresh ingredients, nothing off the shelf. Our coffee is taken seriously. Our matcha is premium.</p>
+  <p>Come as you are. The wind, the view, and something delicious are waiting.</p>
+  <div class="pills">
+    <span class="pill">&#10022; Signature Cocktails</span><span class="pill">&#9749; Specialty Coffee</span><span class="pill">&#127861; Premium Matcha</span><span class="pill">&#127859; Brunch</span><span class="pill">&#127925; Chill Music</span><span class="pill">&#129371; Homemade</span>
+  </div>
+</section>
+<section class="menu-sec" id="menu">
+  <p class="section-eye">What We&rsquo;re Serving</p>
+  <h2>The Menu</h2>
+  <p>Flip through and find your favourite.</p>
+  <div class="menu-coming">Full digital menu coming soon &mdash; ask your bartender!</div>
+</section>
+<footer>
+  <div class="footer-logo">Viento</div>
+  Ku&#269;i&#353;te 45 &middot; 20267 &middot; Pelje&#353;ac &middot; Croatia<br>
+  <a href="https://www.instagram.com/_viento_bar_" target="_blank">@_viento_bar_</a> &nbsp;&middot;&nbsp;
+  <a href="https://maps.app.goo.gl/BM6Hg2Umyy2XwaS56" target="_blank">Find us on Maps</a><br><br>
+  Open daily &middot; 8am &ndash; 10pm
+</footer>
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div id="claimState">
+      <div class="modal-logo">You found us &mdash; here&rsquo;s a little gift</div>
+      <h3>10%<br>OFF</h3>
+      <p class="sub">your entire order, today</p>
+      <div class="location-tag" id="locationTag"></div>
+      <button class="btn btn-terra" style="width:100%;justify-content:center;margin-bottom:14px;font-size:12px;" onclick="claimDiscount()">&#10022; Claim My Discount</button>
+      <div class="valid-note">Valid today only &middot; One per visit<br>Cannot be combined with other offers</div>
+      <button class="modal-close" onclick="closeModal()">&#8592; back to Viento</button>
+    </div>
+    <div id="claimedState" style="display:none">
+      <div class="modal-logo">Your personal code</div>
+      <h3>10%<br>OFF</h3>
+      <p class="sub">your entire order, today</p>
+      <p class="modal-instruction">Show this to your bartender</p>
+      <div class="code-big" id="uniqueCode" onclick="copyCode(this)"></div>
+      <p class="copy-hint">Tap to copy</p>
+      <div class="valid-note">Valid today only &middot; One per visit<br>Cannot be combined with other offers</div>
+      <button class="modal-close" onclick="closeModal()">&#8592; back to Viento</button>
+    </div>
+    <div id="usedState" style="display:none">
+      <div class="modal-logo">Viento Bar</div>
+      <div style="font-size:38px;margin:16px 0">&#127754;</div>
+      <p style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--terra);margin-bottom:10px">See you next time!</p>
+      <p style="font-family:'Lora',serif;font-style:italic;font-size:14px;color:var(--brown-mid);line-height:1.7;margin-bottom:24px">This discount was already claimed today. Come back tomorrow!</p>
+      <div class="valid-note">One discount per device per day</div>
+      <button class="modal-close" onclick="closeModal()">&#8592; back to Viento</button>
+    </div>
+  </div>
+</div>
+<div id="adminPanel">
+  <div class="admin-header">
+    <div class="admin-title"><span>Staff Only</span>Viento Admin</div>
+    <button class="admin-logout" onclick="window.location.href=window.location.pathname">Exit &#x2715;</button>
+  </div>
+  <div class="admin-body">
+    <div class="admin-section">
+      <div class="admin-section-title">Verify a code</div>
+      <div class="verify-row">
+        <input class="code-input" id="codeInput" placeholder="VNT-XXXX" maxlength="8" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')verifyCode()">
+        <button class="btn-verify" onclick="verifyCode()">Check</button>
+      </div>
+      <button class="btn-scan" onclick="startScan()">&#128247; Scan screen</button>
+      <div class="verify-result" id="verifyResult">
+        <div class="result-icon" id="resultIcon"></div>
+        <div class="result-title" id="resultTitle"></div>
+        <div class="result-detail" id="resultDetail"></div>
+        <button class="btn-mark-used" id="markUsedBtn" style="display:none" onclick="markAsUsed()">&#10003; Mark as Redeemed</button>
+      </div>
+    </div>
+    <div class="admin-section">
+      <div class="admin-section-title">Today&rsquo;s stats</div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="stat-num" id="statClaimed">-</div><div class="stat-label">Claimed</div></div>
+        <div class="stat-box"><div class="stat-num" id="statRedeemed">-</div><div class="stat-label">Redeemed</div></div>
+        <div class="stat-box"><div class="stat-num" id="statPending">-</div><div class="stat-label">Pending</div></div>
+        <div class="stat-box"><div class="stat-num" id="statTop">-</div><div class="stat-label">Top location</div></div>
+      </div>
+      <button class="btn-scan" onclick="loadAdminData()">&#8635; Refresh</button>
+    </div>
+    <div class="admin-section">
+      <div class="admin-section-title">Today&rsquo;s codes</div>
+      <ul class="log-list" id="logList"><li style="color:rgba(240,232,213,0.3);font-size:12px;padding:10px 0">Loading&hellip;</li></ul>
+    </div>
+  </div>
+</div>
+<div id="scannerOverlay">
+  <video id="scannerVideo" autoplay playsinline muted></video>
+  <p class="scanner-hint">Point at the code on customer&rsquo;s screen</p>
+  <button class="btn-cancel-scan" onclick="stopScan()">Cancel</button>
+</div>
+<script>
+var SB='https://ejojvlxqyxgcwriqrqpi.supabase.co',SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqb2p2bHhxeXhnY3dyaXFycXBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyMzkzNTUsImV4cCI6MjA5NDgxNTM1NX0.KxR7WPtLwBcvx04wTosSZXd7HkBFJ81uRH4bj3MZceY',APW='viento2025';
+var LOCS={surf:'Surf Center',hostel:'Hostel',beach:'Beach',harbor:'Harbor',orebic:'Orebic',viganj:'Viganj',village:'Village'};
+var verCode=null,scanStr=null;
+function hdr(){return{'Content-Type':'application/json','apikey':SK,'Authorization':'Bearer '+SK,'Prefer':'return=representation'};}
+function today(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function getRec(){try{var r=localStorage.getItem('vc');if(!r)return null;var o=JSON.parse(r);if(o.d!==today()){localStorage.removeItem('vc');return null;}return o;}catch(e){return null;}}
+function setRec(c,l){try{localStorage.setItem('vc',JSON.stringify({d:today(),code:c,loc:l,at:new Date().toISOString()}));}catch(e){}}
+function mkCode(){var c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',s='VNT-';for(var i=0;i<4;i++)s+=c[Math.floor(Math.random()*c.length)];return s;}
+function getLoc(){var p=new URLSearchParams(window.location.search),s=p.get('src')||'';return LOCS[s.toLowerCase()]||'';}
+function saveDb(code,loc){fetch(SB+'/rest/v1/codes',{method:'POST',headers:hdr(),body:JSON.stringify({code:code,location:loc||'unknown',claimed_at:new Date().toISOString(),redeemed:false})}).catch(function(){});}
+function openModal(){document.getElementById('overlay').classList.add('open');var loc=getLoc(),tag=document.getElementById('locationTag');tag.textContent=loc||'';var rec=getRec();if(rec){show2(rec.code);}else{show1();}}
+function closeModal(){document.getElementById('overlay').classList.remove('open');}
+function show1(){document.getElementById('claimState').style.display='';document.getElementById('claimedState').style.display='none';document.getElementById('usedState').style.display='none';}
+function show2(code){document.getElementById('claimState').style.display='none';document.getElementById('usedState').style.display='none';document.getElementById('claimedState').style.display='';document.getElementById('uniqueCode').textContent=code;}
+function claimDiscount(){var rec=getRec();if(rec){show2(rec.code);return;}var code=mkCode(),loc=getLoc();setRec(code,loc);saveDb(code,loc);show2(code);}
+function copyCode(el){navigator.clipboard.writeText(el.textContent).then(function(){var o=el.textContent;el.textContent='Copied!';setTimeout(function(){el.textContent=o;},1500);}).catch(function(){});}
+function scrollToMenu(){document.getElementById('menu').scrollIntoView({behavior:'smooth'});}
+function checkAdmin(){var p=new URLSearchParams(window.location.search);if(p.get('admin')===APW){document.getElementById('adminPanel').classList.add('visible');loadAdminData();}}
+function showRes(type,icon,title,detail,btn){var r=document.getElementById('verifyResult');r.style.display='block';r.className='verify-result '+type;document.getElementById('resultIcon').textContent=icon;document.getElementById('resultTitle').textContent=title;document.getElementById('resultDetail').textContent=detail;document.getElementById('markUsedBtn').style.display=btn?'block':'none';}
+function verifyCode(){var code=document.getElementById('codeInput').value.trim().toUpperCase();if(!code||code.length<4)return;verCode=code;showRes('','⏳','Checking...','',false);fetch(SB+'/rest/v1/codes?code=eq.'+encodeURIComponent(code),{headers:hdr()}).then(function(r){return r.json();}).then(function(rows){if(!rows||!rows.length){showRes('invalid','❌','Code not found','Not generated by Viento.',false);return;}var row=rows[0],t=new Date(row.claimed_at).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}),loc=row.location!=='unknown'?row.location:'';if(row.redeemed){var rt=row.redeemed_at?' at '+new Date(row.redeemed_at).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}):'';showRes('used','⚠️','Already redeemed','Claimed '+t+(loc?' - '+loc:'')+'\nRedeemed'+rt,false);}else{showRes('valid','✅','Valid - not yet used','Claimed today at '+t+(loc?'\n'+loc:''),true);}}).catch(function(){showRes('invalid','⚠️','Error','No connection.',false);});}
+function markAsUsed(){if(!verCode)return;fetch(SB+'/rest/v1/codes?code=eq.'+encodeURIComponent(verCode),{method:'PATCH',headers:hdr(),body:JSON.stringify({redeemed:true,redeemed_at:new Date().toISOString()})}).then(function(){showRes('used','✓','Redeemed','Done.',false);document.getElementById('codeInput').value='';verCode=null;loadAdminData();}).catch(function(){showRes('invalid','⚠️','Error','Could not update.',false);});}
+function loadAdminData(){var t=new Date().toISOString().slice(0,10);fetch(SB+'/rest/v1/codes?claimed_at=gte.'+t+'T00:00:00Z&order=claimed_at.desc',{headers:hdr()}).then(function(r){return r.json();}).then(function(rows){var cl=rows.length,re=rows.filter(function(r){return r.redeemed;}).length;document.getElementById('statClaimed').textContent=cl;document.getElementById('statRedeemed').textContent=re;document.getElementById('statPending').textContent=cl-re;var locs={};rows.forEach(function(r){locs[r.location]=(locs[r.location]||0)+1;});var top=Object.entries(locs).sort(function(a,b){return b[1]-a[1];})[0];document.getElementById('statTop').textContent=top?top[0]:'-';var list=document.getElementById('logList');if(!rows.length){list.innerHTML='<li style="color:rgba(240,232,213,0.3);font-size:12px;padding:8px 0">No codes yet.</li>';return;}list.innerHTML=rows.map(function(r){var ti=new Date(r.claimed_at).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}),lo=r.location!=='unknown'?r.location:'',st=r.redeemed?'redeemed':'claimed';return '<li class="log-item"><span class="log-code">'+r.code+'</span><span class="log-meta">'+ti+(lo?'<br>'+lo:'')+'</span><span class="log-status '+st+'">'+(r.redeemed?'Redeemed':'Claimed')+'</span></li>';}).join('');}).catch(function(){document.getElementById('logList').innerHTML='<li style="color:var(--terra);font-size:12px;padding:8px 0">Could not load.</li>';});}
+function startScan(){if(!navigator.mediaDevices){alert('Camera not available.');return;}document.getElementById('scannerOverlay').classList.add('active');navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(function(stream){scanStr=stream;var v=document.getElementById('scannerVideo');v.srcObject=stream;if('BarcodeDetector' in window){var det=new BarcodeDetector({formats:['qr_code','code_128','code_39']});var si=setInterval(function(){det.detect(v).then(function(c){if(c.length){clearInterval(si);stopScan();document.getElementById('codeInput').value=c[0].rawValue.toUpperCase();verifyCode();}}).catch(function(){});},400);v._si=si;}}).catch(function(){alert('Camera access denied.');stopScan();});}
+function stopScan(){if(scanStr){scanStr.getTracks().forEach(function(t){t.stop();});scanStr=null;}var v=document.getElementById('scannerVideo');if(v._si)clearInterval(v._si);document.getElementById('scannerOverlay').classList.remove('active');}
+document.addEventListener('DOMContentLoaded',function(){checkAdmin();});
+</script>
+</body>
+</html>
