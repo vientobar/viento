@@ -145,7 +145,7 @@ footer a{color:var(--terra);text-decoration:none}
     <div class="book-stage" id="bookStage"></div>
     <div class="book-nav">
       <button class="nav-btn" id="prevBtn" onclick="flipPage(-1)" disabled>&#8592;</button>
-      <span class="page-counter" id="pageCounter">1 / 11</span>
+      <span class="page-counter" id="pageCounter">1 / 10</span>
       <button class="nav-btn" id="nextBtn" onclick="flipPage(1)">&#8594;</button>
     </div>
     <p class="swipe-hint">&#8592; swipe or tap arrows &#8594;</p>
@@ -253,7 +253,7 @@ function loadAdminData(){var t=new Date().toISOString().slice(0,10);fetch(SB+'/r
 function startScan(){if(!navigator.mediaDevices){alert('Camera not available.');return;}document.getElementById('scannerOverlay').classList.add('active');navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(function(stream){scanStr=stream;var v=document.getElementById('scannerVideo');v.srcObject=stream;if('BarcodeDetector' in window){var det=new BarcodeDetector({formats:['qr_code','code_128','code_39']});var si=setInterval(function(){det.detect(v).then(function(c){if(c.length){clearInterval(si);stopScan();document.getElementById('codeInput').value=c[0].rawValue.toUpperCase();verifyCode();}}).catch(function(){});},400);v._si=si;}}).catch(function(){alert('Camera access denied.');stopScan();});}
 function stopScan(){if(scanStr){scanStr.getTracks().forEach(function(t){t.stop();});scanStr=null;}var v=document.getElementById('scannerVideo');if(v._si)clearInterval(v._si);document.getElementById('scannerOverlay').classList.remove('active');}
 var BASE='https://vientobar.github.io/viento/menu/';
-var PAGES=[1,2,3,4,5,6,7,8,9,10,11].map(function(n){return BASE+'p'+n+'.jpg';});;
+var PAGES=[1,2,3,4,5,6,7,8,9,10].map(function(n){return BASE+'p'+n+'.jpg';});;
 var cur=0,busy=false;
 function initFlipbook(){var stage=document.getElementById('bookStage');if(!stage)return;PAGES.forEach(function(src,i){var img=document.createElement('img');img.src=src;img.className='book-page'+(i===0?' active':'');img.alt='Page '+(i+1);stage.appendChild(img);});}
 function flipPage(dir){if(busy)return;var pages=document.querySelectorAll('#bookStage .book-page'),next=cur+dir;if(next<0||next>=pages.length)return;busy=true;var out=pages[cur],inn=pages[next];inn.style.opacity='0';out.style.animation=dir>0?'flipOut 0.3s ease forwards':'flipOutR 0.3s ease forwards';setTimeout(function(){out.classList.remove('active');out.style.animation='';out.style.opacity='';inn.style.animation=dir>0?'flipIn 0.3s ease forwards':'flipInR 0.3s ease forwards';inn.classList.add('active');setTimeout(function(){inn.style.animation='';inn.style.opacity='';cur=next;document.getElementById('pageCounter').textContent=(cur+1)+' / '+pages.length;document.getElementById('prevBtn').disabled=cur===0;document.getElementById('nextBtn').disabled=cur===pages.length-1;busy=false;},310);},300);}
