@@ -210,12 +210,12 @@ footer a{color:var(--terra);text-decoration:none}
 </div>
 <script>
 var SB='https://ejojvlxqyxgcwriqrqpi.supabase.co',SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqb2p2bHhxeXhnY3dyaXFycXBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyMzkzNTUsImV4cCI6MjA5NDgxNTM1NX0.KxR7WPtLwBcvx04wTosSZXd7HkBFJ81uRH4bj3MZceY',APW='viento2025';
-var LOCS={surf:'Surf Center',hostel:'Hostel',beach:'Beach',harbor:'Harbor',orebic:'Orebic',viganj:'Viganj',village:'Village'};
+var LOCS={surf:'Surf Center',hostel:'Hostel',beach:'Beach',harbor:'Harbor',orebic:'Orebic',viganj:'Viganj',village:'Village',kuciste:'Kuciste',loviste:'Loviste',komodor:'Komodor',trstenica:'Trstenica',butige:'Butige'};
 var verCode=null,scanStr=null;
 function hdr(){return{'Content-Type':'application/json','apikey':SK,'Authorization':'Bearer '+SK,'Prefer':'return=representation'};}
-function today(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
-function getRec(){try{var r=localStorage.getItem('vc');if(!r)return null;var o=JSON.parse(r);if(o.d!==today()){localStorage.removeItem('vc');return null;}return o;}catch(e){return null;}}
-function setRec(c,l){try{localStorage.setItem('vc',JSON.stringify({d:today(),code:c,loc:l,at:new Date().toISOString()}));}catch(e){}}
+function getRec(){try{var r=localStorage.getItem('vc');if(!r)return null;return JSON.parse(r);}catch(e){return null;}}
+function setRec(c,l){try{localStorage.setItem('vc',JSON.stringify({code:c,loc:l,at:new Date().toISOString(),redeemed:false}));}catch(e){}}
+function markDeviceRedeemed(){try{var r=getRec();if(r){r.redeemed=true;localStorage.setItem('vc',JSON.stringify(r));}}catch(e){}}
 function mkCode(){var c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',s='VNT-';for(var i=0;i<4;i++)s+=c[Math.floor(Math.random()*c.length)];return s;}
 function getLoc(){var p=new URLSearchParams(window.location.search),s=p.get('src')||'';return LOCS[s.toLowerCase()]||'';}
 function saveDb(code,loc){fetch(SB+'/rest/v1/codes',{method:'POST',headers:hdr(),body:JSON.stringify({code:code,location:loc||'unknown',claimed_at:new Date().toISOString(),redeemed:false})}).catch(function(){});}
