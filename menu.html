@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viento Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--sage:#8d9977;--terra:#c4613a;--cream:#faf6ee;--brown:#3d2b1f;--beige:#f0e8d5}
+body{background:var(--cream);font-family:'Josefin Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 20px 48px}
+.logo{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--brown);letter-spacing:0.04em;margin-bottom:4px}
+.tagline{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:var(--sage);margin-bottom:32px}
+.flipbook-wrap{position:relative;width:100%;max-width:400px;user-select:none}
+.book-stage{position:relative;width:100%;padding-top:136%;border-radius:4px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.12),6px 6px 0 rgba(0,0,0,0.06);background:#fff}
+.book-page{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;pointer-events:none;background:#fff}
+.book-page.active{opacity:1}
+@keyframes flipOut{0%{opacity:1;transform:rotateY(0);transform-origin:left center}100%{opacity:0;transform:rotateY(90deg);transform-origin:left center}}
+@keyframes flipIn{0%{opacity:0;transform:rotateY(-90deg);transform-origin:right center}100%{opacity:1;transform:rotateY(0);transform-origin:right center}}
+@keyframes flipOutR{0%{opacity:1;transform:rotateY(0);transform-origin:right center}100%{opacity:0;transform:rotateY(-90deg);transform-origin:right center}}
+@keyframes flipInR{0%{opacity:0;transform:rotateY(90deg);transform-origin:left center}100%{opacity:1;transform:rotateY(0);transform-origin:right center}}
+.book-nav{display:flex;align-items:center;justify-content:space-between;margin-top:16px;gap:12px}
+.nav-btn{background:var(--beige);border:1px solid rgba(141,153,119,0.4);color:var(--sage);border-radius:2px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;transition:background 0.18s}
+.nav-btn:hover{background:var(--terra);color:#fff;border-color:var(--terra)}
+.nav-btn:disabled{opacity:0.3;cursor:not-allowed}
+.page-counter{font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:0.18em;color:var(--sage);text-align:center;flex:1}
+.swipe-hint{margin-top:10px;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(141,153,119,0.6);text-align:center}
+.footer{margin-top:36px;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(61,43,31,0.35);text-align:center;line-height:2}
+.footer a{color:var(--terra);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="logo">Viento</div>
+<div class="tagline">Ku&#269;i&#353;te &middot; Pelje&#353;ac &middot; Croatia</div>
+
+<div class="flipbook-wrap">
+  <div class="book-stage" id="bookStage"></div>
+  <div class="book-nav">
+    <button class="nav-btn" id="prevBtn" onclick="flipPage(-1)" disabled>&#8592;</button>
+    <span class="page-counter" id="pageCounter">1 / 8</span>
+    <button class="nav-btn" id="nextBtn" onclick="flipPage(1)">&#8594;</button>
+  </div>
+  <p class="swipe-hint">&#8592; swipe or tap arrows to flip &#8594;</p>
+</div>
+
+<div class="footer">
+  <a href="https://vientobar.github.io/viento" target="_blank">vientobar.github.io/viento</a><br>
+  <a href="https://maps.app.goo.gl/BM6Hg2Umyy2XwaS56" target="_blank">Find us on Maps</a> &nbsp;&middot;&nbsp;
+  <a href="https://www.instagram.com/_viento_bar_" target="_blank">@_viento_bar_</a>
+</div>
+
+<script>
+var BASE='https://vientobar.github.io/viento/menu/';
+var PAGES=[2,3,4,5,6,7,8,9].map(function(n){return BASE+'p'+n+'.jpg';});
+var cur=0,busy=false;
+
+function initFlipbook(){
+  var stage=document.getElementById('bookStage');
+  PAGES.forEach(function(src,i){
+    var img=document.createElement('img');
+    img.src=src;img.className='book-page'+(i===0?' active':'');img.alt='Page '+(i+1);
+    stage.appendChild(img);
+  });
+}
+function flipPage(dir){
+  if(busy)return;
+  var pages=document.querySelectorAll('#bookStage .book-page'),next=cur+dir;
+  if(next<0||next>=pages.length)return;
+  busy=true;
+  var out=pages[cur],inn=pages[next];
+  inn.style.opacity='0';
+  out.style.animation=dir>0?'flipOut 0.3s ease forwards':'flipOutR 0.3s ease forwards';
+  setTimeout(function(){
+    out.classList.remove('active');out.style.animation='';out.style.opacity='';
+    inn.style.animation=dir>0?'flipIn 0.3s ease forwards':'flipInR 0.3s ease forwards';
+    inn.classList.add('active');
+    setTimeout(function(){
+      inn.style.animation='';inn.style.opacity='';
+      cur=next;
+      document.getElementById('pageCounter').textContent=(cur+1)+' / '+pages.length;
+      document.getElementById('prevBtn').disabled=cur===0;
+      document.getElementById('nextBtn').disabled=cur===pages.length-1;
+      busy=false;
+    },310);
+  },300);
+}
+document.addEventListener('DOMContentLoaded',function(){
+  initFlipbook();
+  var stage=document.getElementById('bookStage'),tx=0;
+  stage.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+  stage.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)flipPage(dx<0?1:-1);},{passive:true});
+  document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')flipPage(1);if(e.key==='ArrowLeft')flipPage(-1);});
+});
+</script>
+</body>
+</html>
