@@ -34,6 +34,10 @@ body{background:var(--cream);font-family:'Josefin Sans',sans-serif;min-height:10
 <div class="logo">Viento</div>
 <div class="tagline">Ku&#269;i&#353;te &middot; Pelje&#353;ac &middot; Croatia</div>
 
+<div style="display:flex;gap:8px;justify-content:center;margin-bottom:20px">
+  <button id="btn-en" onclick="switchLang('EN')" style="background:var(--terra);color:#fff;border:1px solid var(--terra);border-radius:2px;padding:8px 20px;font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer">EN</button>
+  <button id="btn-hr" onclick="switchLang('HR')" style="background:transparent;color:var(--sage);border:1px solid var(--sage);border-radius:2px;padding:8px 20px;font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer">HR</button>
+</div>
 <div class="flipbook-wrap">
   <div class="book-stage" id="bookStage"></div>
   <div class="book-nav">
@@ -51,9 +55,32 @@ body{background:var(--cream);font-family:'Josefin Sans',sans-serif;min-height:10
 </div>
 
 <script>
-var BASE='https://vientobar.github.io/viento/menu/';
-var PAGES=[2,3,4,5,6,7,8,9].map(function(n){return BASE+'p'+n+'.jpg';});
-var cur=0,busy=false;
+var BASE_EN='https://vientobar.github.io/viento/menu/';
+var BASE_HR='https://vientobar.github.io/viento/menu_hr/';
+var PAGES_EN=[2,3,4,5,6,7,8,9].map(function(n){return BASE_EN+'p'+n+'.jpg';});
+var PAGES_HR=[1,2,3,4,5,6,7,8,9].map(function(n){return BASE_HR+'p'+n+'.jpg';});
+var PAGES=PAGES_EN;
+var cur=0,busy=false,lang='EN';
+
+function switchLang(l){
+  lang=l;
+  PAGES=l==='EN'?PAGES_EN:PAGES_HR;
+  cur=0;
+  var stage=document.getElementById('bookStage');
+  stage.innerHTML='';
+  PAGES.forEach(function(src,i){
+    var img=document.createElement('img');
+    img.src=src;img.className='book-page'+(i===0?' active':'');img.alt='Page '+(i+1);
+    stage.appendChild(img);
+  });
+  document.getElementById('pageCounter').textContent='1 / '+PAGES.length;
+  document.getElementById('prevBtn').disabled=true;
+  document.getElementById('nextBtn').disabled=false;
+  document.getElementById('btn-en').style.background=l==='EN'?'var(--terra)':'transparent';
+  document.getElementById('btn-en').style.color=l==='EN'?'#fff':'var(--sage)';
+  document.getElementById('btn-hr').style.background=l==='HR'?'var(--terra)':'transparent';
+  document.getElementById('btn-hr').style.color=l==='HR'?'#fff':'var(--sage)';
+}
 
 function initFlipbook(){
   var stage=document.getElementById('bookStage');
