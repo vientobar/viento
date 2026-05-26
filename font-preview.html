@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viento Font Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Cormorant+Garamond:ital,wght@0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400&family=Josefin+Sans:wght@300;400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--beige:#f0e8d5;--terra:#c4613a;--cream:#faf6ee;--brown:#3d2b1f;--brown-mid:#6b4c38}
+body{background:var(--cream);padding:0 0 60px}
+.option{padding:40px 28px;border-bottom:1px solid rgba(61,43,31,0.1);background:linear-gradient(175deg,rgba(30,18,10,0.08) 0%,rgba(30,18,10,0.72) 100%),#4e7d8c;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;position:relative}
+.option-label{position:absolute;top:16px;left:28px;background:var(--terra);color:#fff;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;padding:5px 12px;border-radius:2px}
+.sub{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(240,232,213,0.7);margin-bottom:8px}
+.tagline{font-style:italic;font-size:15px;color:rgba(240,232,216,0.82);margin-bottom:10px;line-height:1.6;max-width:290px}
+
+/* Each font option */
+.f1 h1{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(72px,20vw,120px);line-height:0.88;color:var(--beige);letter-spacing:-0.01em}
+.f1 h1 em{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:0.45em;display:block;color:rgba(240,232,213,0.8);letter-spacing:0.08em;margin-bottom:4px}
+.f1 .tagline{font-family:'Lora',serif}
+
+.f2 h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(80px,22vw,130px);line-height:0.88;color:var(--beige);letter-spacing:0.01em}
+.f2 h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:0.42em;display:block;color:rgba(240,232,213,0.8);letter-spacing:0.1em;margin-bottom:4px}
+.f2 .tagline{font-family:'Cormorant Garamond',serif}
+
+.f3 h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(68px,19vw,115px);line-height:0.88;color:var(--beige);letter-spacing:0em}
+.f3 h1 em{font-family:'DM Serif Display',serif;font-style:italic;font-size:0.45em;display:block;color:rgba(240,232,213,0.8);letter-spacing:0.06em;margin-bottom:4px}
+.f3 .tagline{font-family:'DM Serif Display',serif;font-style:italic}
+
+.f4 h1{font-family:'Libre Baskerville',serif;font-weight:700;font-size:clamp(60px,17vw,105px);line-height:0.88;color:var(--beige);letter-spacing:-0.01em}
+.f4 h1 em{font-family:'Libre Baskerville',serif;font-style:italic;font-weight:400;font-size:0.42em;display:block;color:rgba(240,232,213,0.8);letter-spacing:0.06em;margin-bottom:4px}
+.f4 .tagline{font-family:'Libre Baskerville',serif;font-style:italic}
+
+.f5 h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(72px,20vw,120px);line-height:0.88;color:var(--beige);letter-spacing:-0.01em}
+.f5 h1 em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:0.45em;display:block;color:rgba(240,232,213,0.8);letter-spacing:0.06em;margin-bottom:4px}
+.f5 .tagline{font-family:'Fraunces',serif;font-style:italic}
+</style>
+</head>
+<body>
+
+<div class="option f1">
+  <span class="option-label">Option 1 — Playfair Display (current)</span>
+  <h1><em>cocktails &amp; brunch</em>VIENTO</h1>
+  <p class="tagline">Slow down. Sip something beautiful. Stay a little longer.</p>
+</div>
+
+<div class="option f2">
+  <span class="option-label">Option 2 — Cormorant Garamond</span>
+  <h1><em>cocktails &amp; brunch</em>VIENTO</h1>
+  <p class="tagline">Slow down. Sip something beautiful. Stay a little longer.</p>
+</div>
+
+<div class="option f3">
+  <span class="option-label">Option 3 — DM Serif Display</span>
+  <h1><em>cocktails &amp; brunch</em>VIENTO</h1>
+  <p class="tagline">Slow down. Sip something beautiful. Stay a little longer.</p>
+</div>
+
+<div class="option f4">
+  <span class="option-label">Option 4 — Libre Baskerville</span>
+  <h1><em>cocktails &amp; brunch</em>VIENTO</h1>
+  <p class="tagline">Slow down. Sip something beautiful. Stay a little longer.</p>
+</div>
+
+<div class="option f5">
+  <span class="option-label">Option 5 — Fraunces</span>
+  <h1><em>cocktails &amp; brunch</em>VIENTO</h1>
+  <p class="tagline">Slow down. Sip something beautiful. Stay a little longer.</p>
+</div>
+
+</body>
+</html>
