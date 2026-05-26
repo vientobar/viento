@@ -113,17 +113,21 @@ footer a{color:var(--terra);text-decoration:none}
 <body>
 <section class="hero">
   <svg class="hero-wave" viewBox="0 0 375 48" fill="none" preserveAspectRatio="none"><path d="M0 24 Q60 6 120 28 Q180 48 240 24 Q300 4 375 28 L375 48 L0 48 Z" fill="#faf6ee"/></svg>
-  <div class="hero-top">
+  <div class="hero-top" style="display:flex;align-items:center;justify-content:space-between;padding-right:28px">
     <a class="badge-link" href="https://maps.app.goo.gl/BM6Hg2Umyy2XwaS56" target="_blank">
       <span>&#128205;</span><span class="badge">Ku&#269;i&#353;te &middot; Pelje&#353;ac &middot; Croatia</span><span style="font-size:12px;color:var(--terra)">&#8599;</span>
     </a>
+    <div style="display:flex;gap:6px">
+      <button id="btn-en" onclick="setLang('en')" style="background:var(--terra);color:#fff;border:1px solid var(--terra);border-radius:2px;padding:6px 14px;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer">EN</button>
+      <button id="btn-hr" onclick="setLang('hr')" style="background:transparent;color:var(--beige);border:1px solid rgba(240,232,213,0.45);border-radius:2px;padding:6px 14px;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer">HR</button>
+    </div>
   </div>
   <div class="hero-content">
-    <h1><em>cocktails &amp; brunch</em>VIENTO</h1>
-    <p class="hero-sub">Slow down. Sip something beautiful. Stay a little longer.</p>
+    <h1><em id="hero-em">cocktails &amp; brunch</em>VIENTO</h1>
+    <p class="hero-sub" id="hero-sub">Slow down. Sip something beautiful. Stay a little longer.</p>
     <div class="cta-row">
-      <button class="btn btn-terra" id="discountBtn" style="display:none" onclick="openModal()">Claim 10% Off</button>
-      <button class="btn btn-ghost" onclick="scrollToMenu()">View Menu</button>
+      <button class="btn btn-terra" id="discountBtn" style="display:none" onclick="openModal()"><span id="discount-btn">Claim 10% Off</span></button>
+      <button class="btn btn-ghost" onclick="scrollToMenu()" id="view-menu-btn">View Menu</button>
       <a href="https://www.instagram.com/_viento_bar_" target="_blank" class="btn btn-ghost" style="padding:14px 16px" aria-label="Instagram">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
       </a>
@@ -131,23 +135,23 @@ footer a{color:var(--terra);text-decoration:none}
   </div>
 </section>
 <section class="story">
-  <p class="section-eye">Our Story</p>
-  <h2>A space shaped by good energy &amp; <em>the joy of taking things slowly.</em></h2>
-  <p>Located just steps from the sea, Viento is your go-to spot for calm mornings, golden hour drinks and everything in between.</p>
-  <p>We opened Viento because we wanted a place we couldn&rsquo;t find anywhere else. A creative outlet built around flavours we genuinely love making &mdash; cocktails crafted from scratch, coffee taken seriously, homemade iced teas and flavoured lemonades.</p>
-  <p>The wind sets the mood at Viento &mdash; so much so, it made it into the name. Viento, Spanish for wind, blows here daily, cooling the terrace and turning it into an escape from the Adriatic heat. With a little help from the shade of the olive trees.</p>
-  <p>This is our second season, and the cocktails our guests loved most last summer are staying exactly where they belong &mdash; in the Hall of Fame. Including our <em>Not So Slim Shady</em>, the one that made people stop and ask: wait, is that olive oil? It is. And it works.</p>
-  <p>And for those who like the familiar done differently &mdash; our Classic Twists take the cocktails you already love and give them a Viento touch. Same soul, our way.</p>
-  <p>Everything here is made with care and intention; soft music, calm vibes and thoughtful flavours.</p>
-  <p>Come and see for yourself. The wind, the view, and something delicious are waiting.</p>
+  <p class="section-eye"><span id="eye-story">Our Story</span></p>
+  <h2 id="story-h2">A space shaped by good energy &amp; <em>the joy of taking things slowly.</em></h2>
+  <p data-en="Located just steps from the sea, Viento is your go-to spot for calm mornings, golden hour drinks and everything in between." data-hr="Smješten tik uz more, Viento je mjesto za mirna jutra, koktele uz zalazak sunca i sve između toga.">Located just steps from the sea, Viento is your go-to spot for calm mornings, golden hour drinks and everything in between.</p>
+  <p data-en="We opened Viento because we wanted a place we couldn&rsquo;t find anywhere else. A creative outlet built around flavours we genuinely love making &mdash; cocktails crafted from scratch, coffee taken seriously, homemade iced teas and flavoured lemonades." data-hr="Otvorili smo Viento jer smo htjeli mjesto kakvo nismo mogli pronaći nigdje drugdje. Kreativni prostor izgrađen oko okusa koje iskreno volimo stvarati — kokteli pripremani od nule, organska kava, domaći ledeni čajevi i limunade s okusima.">We opened Viento because we wanted a place we couldn&rsquo;t find anywhere else. A creative outlet built around flavours we genuinely love making &mdash; cocktails crafted from scratch, coffee taken seriously, homemade iced teas and flavoured lemonades.</p>
+  <p data-en="The wind sets the mood at Viento &mdash; so much so, it made it into the name. Viento, Spanish for wind, blows here daily, cooling the terrace and turning it into an escape from the Adriatic heat. With a little help from the shade of the olive trees." data-hr="Vjetar određuje atmosferu u Vientu — toliko da je završio i u samom imenu. Viento, španjolski za vjetar, ovdje puše svaki dan, rashđuje terasu i pretvara je u bijeg od jadranske vrućine (uz malu pomoć sjene maslina).">The wind sets the mood at Viento &mdash; so much so, it made it into the name. Viento, Spanish for wind, blows here daily, cooling the terrace and turning it into an escape from the Adriatic heat. With a little help from the shade of the olive trees.</p>
+  <p data-en="This is our second season, and the cocktails our guests loved most last summer are staying exactly where they belong &mdash; in the Hall of Fame. Including our <em>Not So Slim Shady</em>, the one that made people stop and ask: wait, is that olive oil? It is. And it works." data-hr="Ovo nam je druga sezona, a kokteli koje su naši gosti prošlog ljeta najviše voljeli ostaju točno tamo gdje pripadaju — u Hall of Fame-u. Uključujući naš <em>Not So Slim Shady</em>, koktel zbog kojeg su ljudi zastajali i pitali: čekaj, je li to maslinovo ulje?">This is our second season, and the cocktails our guests loved most last summer are staying exactly where they belong &mdash; in the Hall of Fame. Including our <em>Not So Slim Shady</em>, the one that made people stop and ask: wait, is that olive oil? It is. And it works.</p>
+  <p data-en="And for those who like the familiar done differently &mdash; our Classic Twists take the cocktails you already love and give them a Viento touch. Same soul, our way." data-hr="A za one koji vole poznato ali s novim pristupom — naši Classic Twists daju Viento potpis klasičnim koktelima koje već volite. Isti karakter ali na naš način.">And for those who like the familiar done differently &mdash; our Classic Twists take the cocktails you already love and give them a Viento touch. Same soul, our way.</p>
+  <p data-en="Everything here is made with care and intention; soft music, calm vibes and thoughtful flavours." data-hr="Sve ovdje nastaje s pažnjom i namjerom; ugodna glazba, opuštena atmosfera i promišljeni okusi.">Everything here is made with care and intention; soft music, calm vibes and thoughtful flavours.</p>
+  <p data-en="Come and see for yourself. The wind, the view, and something delicious are waiting." data-hr="Dođite i uvjerite se sami. Vjetar, pogled i nešto jako fino vas čekaju.">Come and see for yourself. The wind, the view, and something delicious are waiting.</p>
   <div class="pills">
-    <span class="pill">&#10022; Signature Cocktails</span><span class="pill">&#9749; Organic Coffee</span><span class="pill">&#127861; Premium Matcha</span><span class="pill">&#127859; Brunch</span><span class="pill">&#127925; Chill Music</span><span class="pill">&#129371; Homemade</span>
+    <span class="pill"><span id="pill-cocktails">&#10022; Signature Cocktails</span></span><span class="pill"><span id="pill-coffee">&#9749; Organic Coffee</span></span><span class="pill"><span id="pill-matcha">&#127861; Premium Matcha</span></span><span class="pill"><span id="pill-brunch">&#127859; Brunch</span></span><span class="pill"><span id="pill-music">&#127925; Chill Music</span></span><span class="pill"><span id="pill-homemade">&#129371; Homemade</span></span>
   </div>
 </section>
 <section class="story" style="background:var(--terra);border-bottom:none">
-  <p class="section-eye" style="color:rgba(250,246,238,0.9);font-size:16px;letter-spacing:0.22em">This Season at Viento</p>
+  <p class="section-eye" style="color:rgba(250,246,238,0.9);font-size:16px;letter-spacing:0.22em"><span id="eye-season">This Season at Viento</span></p>
   <h2 style="color:var(--cream)">Around <em style="color:#f2c18d">the World.</em></h2>
-  <p style="color:rgba(250,246,238,0.85)">This year we&rsquo;re taking you somewhere new. Six new signature cocktails, each one inspired by the flavours of a different corner of the world. A journey worth taking, one sip at a time.</p>
+  <p id="season-p" style="color:rgba(250,246,238,0.85)">This year we&rsquo;re taking you somewhere new. Six new signature cocktails, each one inspired by the flavours of a different corner of the world. A journey worth taking, one sip at a time.</p>
 </section>
 
 <div style="background:var(--terra);line-height:0;margin-bottom:-1px">
@@ -155,9 +159,9 @@ footer a{color:var(--terra);text-decoration:none}
 <path d="M0 24 Q60 6 120 28 Q180 48 240 24 Q300 4 375 28 L375 48 L0 48 Z" fill="#8d9977"/>
 </svg></div>
 <section class="menu-sec" id="menu">
-  <p class="section-eye">What We&rsquo;re Serving</p>
-  <h2>The Menu</h2>
-  <p>Flip through and find your favourite.</p>
+  <p class="section-eye"><span id="eye-menu">What We're Serving</span></p>
+  <h2 id="menu-h2">The Menu</h2>
+  <p id="menu-sub">Flip through and find your favourite.</p>
   <div class="flipbook-wrap">
     <div class="book-stage" id="bookStage"></div>
     <div class="book-nav">
@@ -173,7 +177,7 @@ footer a{color:var(--terra);text-decoration:none}
   Ku&#269;i&#353;te 45 &middot; 20267 &middot; Pelje&#353;ac &middot; Croatia<br>
   <a href="https://www.instagram.com/_viento_bar_" target="_blank">@_viento_bar_</a> &nbsp;&middot;&nbsp;
   <a href="https://maps.app.goo.gl/BM6Hg2Umyy2XwaS56" target="_blank">Find us on Maps</a><br><br>
-  Open daily &middot; 8am &ndash; 10pm
+  <span id="footer-hours">Open daily &middot; 8am &ndash; 10pm</span>
 </footer>
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
@@ -182,7 +186,7 @@ footer a{color:var(--terra);text-decoration:none}
       <h3>10%<br>OFF</h3>
       <p class="sub">your entire order, today</p>
       <div class="location-tag" id="locationTag"></div>
-      <button class="btn btn-terra" style="width:100%;justify-content:center;margin-bottom:14px;font-size:12px;" onclick="claimDiscount()">&#10022; Claim My Discount</button>
+      <button class="btn btn-terra" style="width:100%;justify-content:center;margin-bottom:14px;font-size:12px;" onclick="claimDiscount()" id="claim-btn">&#10022; Claim My Discount</button>
       <button class="modal-close" onclick="closeModal()">&#8592; back to Viento</button>
     </div>
     <div id="claimedState" style="display:none">
@@ -275,7 +279,76 @@ var PAGES=[2,3,4,5,6,7,8,9].map(function(n){return BASE+'p'+n+'.jpg';});;
 var cur=0,busy=false;
 function initFlipbook(){var stage=document.getElementById('bookStage');if(!stage)return;PAGES.forEach(function(src,i){var img=document.createElement('img');img.src=src;img.className='book-page'+(i===0?' active':'');img.alt='Page '+(i+1);stage.appendChild(img);});}
 function flipPage(dir){if(busy)return;var pages=document.querySelectorAll('#bookStage .book-page'),next=cur+dir;if(next<0||next>=pages.length)return;busy=true;var out=pages[cur],inn=pages[next];inn.style.opacity='0';out.style.animation=dir>0?'flipOut 0.3s ease forwards':'flipOutR 0.3s ease forwards';setTimeout(function(){out.classList.remove('active');out.style.animation='';out.style.opacity='';inn.style.animation=dir>0?'flipIn 0.3s ease forwards':'flipInR 0.3s ease forwards';inn.classList.add('active');setTimeout(function(){inn.style.animation='';inn.style.opacity='';cur=next;document.getElementById('pageCounter').textContent=(cur+1)+' / '+pages.length;document.getElementById('prevBtn').disabled=cur===0;document.getElementById('nextBtn').disabled=cur===pages.length-1;busy=false;},310);},300);}
-document.addEventListener('DOMContentLoaded',function(){checkAdmin();checkDiscount();initFlipbook();var stage=document.getElementById('bookStage'),tx=0;if(stage){stage.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});stage.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)flipPage(dx<0?1:-1);},{passive:true});}document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')flipPage(1);if(e.key==='ArrowLeft')flipPage(-1);});});
+function setLang(l){
+  localStorage.setItem('viento_lang',l);
+  // Toggle buttons
+  document.getElementById('btn-en').style.background=l==='en'?'var(--terra)':'transparent';
+  document.getElementById('btn-en').style.color=l==='en'?'#fff':'var(--beige)';
+  document.getElementById('btn-en').style.borderColor=l==='en'?'var(--terra)':'rgba(240,232,213,0.45)';
+  document.getElementById('btn-hr').style.background=l==='hr'?'var(--terra)':'transparent';
+  document.getElementById('btn-hr').style.color=l==='hr'?'#fff':'var(--beige)';
+  document.getElementById('btn-hr').style.borderColor=l==='hr'?'var(--terra)':'rgba(240,232,213,0.45)';
+
+  var t={
+    en:{
+      'hero-em':'cocktails &amp; brunch',
+      'hero-sub':'Slow down. Sip something beautiful. Stay a little longer.',
+      'view-menu-btn':'View Menu',
+      'discount-btn':'Claim 10% Off',
+      'claim-btn':'&#10022; Claim My Discount',
+      'eye-story':'Our Story',
+      'story-h2':'A space shaped by good energy &amp; <em>the joy of taking things slowly.</em>',
+      'eye-menu':'What We\'re Serving',
+      'menu-h2':'The Menu',
+      'menu-sub':'Flip through and find your favourite.',
+      'eye-season':'This Season at Viento',
+      'season-p':'This year we\'re taking you somewhere new. Six new signature cocktails, each one inspired by the flavours of a different corner of the world. A journey worth taking, one sip at a time.',
+      'footer-hours':'Open daily &middot; 8am &ndash; 10pm',
+      'pill-cocktails':'&#10022; Signature Cocktails',
+      'pill-coffee':'&#9749; Organic Coffee',
+      'pill-matcha':'&#127861; Premium Matcha',
+      'pill-brunch':'&#127859; Brunch',
+      'pill-music':'&#127925; Chill Music',
+      'pill-homemade':'&#129371; Homemade'
+    },
+    hr:{
+      'hero-em':'kokteli i brunch',
+      'hero-sub':'Uspori malo. Popij nešto drugačije. Za dobar gutljaj uvijek ima vremena.',
+      'view-menu-btn':'Meni',
+      'discount-btn':'Ugrabi 10% popusta',
+      'claim-btn':'&#10022; Iskoristi moj popust',
+      'eye-story':'Naša priča',
+      'story-h2':'Stvoren iz dobre energije i <em>uŽitka u sporom življenju.</em>',
+      'eye-menu':'Što poslužujemo',
+      'menu-h2':'Meni',
+      'menu-sub':'Pregledaj i pronađi svog favorita.',
+      'eye-season':'Ove sezone u Vientu',
+      'season-p':'Ove godine vodimo vas negdje novo. Šest novih signature koktela, svaki inspiriran okusima jednog dijela svijeta.',
+      'footer-hours':'Radno vrijeme: 8:00 - 22:00',
+      'pill-cocktails':'&#10022; Signature kokteli',
+      'pill-coffee':'&#9749; Organska kava',
+      'pill-matcha':'&#127861; Premium matcha',
+      'pill-brunch':'&#127859; Brunch',
+      'pill-music':'&#127925; Opuštena glazba',
+      'pill-homemade':'&#129371; Domaće'
+    }
+  };
+  var tx=t[l];
+  // Apply translations
+  for(var id in tx){
+    var el=document.getElementById(id);
+    if(el)el.innerHTML=tx[id];
+  }
+  // Story paragraphs
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    el.innerHTML=l==='en'?el.dataset.en:el.dataset.hr;
+  });
+}
+
+document.addEventListener('DOMContentLoaded',function(){checkAdmin();
+  var savedLang=localStorage.getItem('viento_lang')||'en';
+  if(savedLang==='hr')setLang('hr');
+checkDiscount();initFlipbook();var stage=document.getElementById('bookStage'),tx=0;if(stage){stage.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});stage.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)flipPage(dx<0?1:-1);},{passive:true});}document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')flipPage(1);if(e.key==='ArrowLeft')flipPage(-1);});});
 </script>
 </body>
 </html>
