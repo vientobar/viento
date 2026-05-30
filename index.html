@@ -258,12 +258,7 @@ function setRec(c,l){try{localStorage.setItem('vc',JSON.stringify({code:c,loc:l,
 function markDeviceRedeemed(){try{var r=getRec();if(r){r.redeemed=true;localStorage.setItem('vc',JSON.stringify(r));}}catch(e){}}
 function mkCode(){var c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',s='VNT-';for(var i=0;i<4;i++)s+=c[Math.floor(Math.random()*c.length)];return s;}
 function getLoc(){var p=new URLSearchParams(window.location.search),s=p.get('src')||'';return LOCS[s.toLowerCase()]||'';}
-function saveDb(code,loc){
-  fetch(SB+'/rest/v1/codes',{method:'POST',headers:hdr(),body:JSON.stringify({code:code,location:loc||'unknown',claimed_at:new Date().toISOString(),redeemed:false})})
-  .then(function(r){console.log('Supabase insert status:',r.status);return r.text();})
-  .then(function(t){console.log('Supabase response:',t);})
-  .catch(function(e){console.error('Supabase error:',e);});
-}
+function saveDb(code,loc){fetch(SB+'/rest/v1/codes',{method:'POST',headers:hdr(),body:JSON.stringify({code:code,location:loc||'unknown',claimed_at:new Date().toISOString(),redeemed:false})}).catch(function(){});}
 function openModal(){document.getElementById('overlay').classList.add('open');var loc=getLoc(),tag=document.getElementById('locationTag');tag.textContent=loc||'';var rec=getRec();if(rec){show2(rec.code);}else{show1();}}
 function closeModal(){document.getElementById('overlay').classList.remove('open');}
 function show1(){document.getElementById('claimState').style.display='';document.getElementById('claimedState').style.display='none';document.getElementById('usedState').style.display='none';}
